@@ -163,12 +163,27 @@ else
 fi
 CHMOD=("/bin/chmod")
 MKDIR=("/bin/mkdir" "-p")
-HOMEBREW_BREW_DEFAULT_GIT_REMOTE="https://github.com/Homebrew/brew"
-HOMEBREW_CORE_DEFAULT_GIT_REMOTE="https://github.com/Homebrew/homebrew-core"
+HOMEBREW_BREW_DEFAULT_GIT_REMOTE="https://e.coding.net/bugwz/homebrew/brew"
+HOMEBREW_CORE_DEFAULT_GIT_REMOTE="https://e.coding.net/bugwz/homebrew/homebrew-core"
+HOMEBREW_CASK_DEFAULT_GIT_REMOTE="https://e.coding.net/bugwz/homebrew/homebrew-cask"
+HOMEBREW_CASK_FONTS_DEFAULT_GIT_REMOTE="https://e.coding.net/bugwz/homebrew/homebrew-cask-fonts"
+HOMEBREW_CASK_DRIVERS_DEFAULT_GIT_REMOTE="https://e.coding.net/bugwz/homebrew/homebrew-cask-drivers"
+HOMEBREW_CASK_VERSIONS_DEFAULT_GIT_REMOTE="https://e.coding.net/bugwz/homebrew/homebrew-cask-versions"
+HOMEBREW_BUNDLE_DEFAULT_GIT_REMOTE="https://e.coding.net/bugwz/homebrew/homebrew-bundle"
+HOMEBREW_SERVICES_DEFAULT_GIT_REMOTE="https://e.coding.net/bugwz/homebrew/homebrew-services"
+HOMEBREW_COMMAND_NOT_FOUND_DEFAULT_GIT_REMOTE="https://e.coding.net/bugwz/homebrew/homebrew-command-not-found"
 
 # Use remote URLs of Homebrew repositories from environment if set.
 HOMEBREW_BREW_GIT_REMOTE="${HOMEBREW_BREW_GIT_REMOTE:-"${HOMEBREW_BREW_DEFAULT_GIT_REMOTE}"}"
 HOMEBREW_CORE_GIT_REMOTE="${HOMEBREW_CORE_GIT_REMOTE:-"${HOMEBREW_CORE_DEFAULT_GIT_REMOTE}"}"
+HOMEBREW_CASK_GIT_REMOTE="${HOMEBREW_CASK_GIT_REMOTE:-"${HOMEBREW_CASK_DEFAULT_GIT_REMOTE}"}"
+HOMEBREW_CASK_FONTS_GIT_REMOTE="${HOMEBREW_CASK_FONTS_GIT_REMOTE:-"${HOMEBREW_CASK_FONTS_DEFAULT_GIT_REMOTE}"}"
+HOMEBREW_CASK_DRIVERS_GIT_REMOTE="${HOMEBREW_CASK_DRIVERS_GIT_REMOTE:-"${HOMEBREW_CASK_DRIVERS_DEFAULT_GIT_REMOTE}"}"
+HOMEBREW_CASK_VERSIONS_GIT_REMOTE="${HOMEBREW_CASK_VERSIONS_GIT_REMOTE:-"${HOMEBREW_CASK_VERSIONS_DEFAULT_GIT_REMOTE}"}"
+HOMEBREW_BUNDLE_GIT_REMOTE="${HOMEBREW_BUNDLE_GIT_REMOTE:-"${HOMEBREW_BUNDLE_DEFAULT_GIT_REMOTE}"}"
+HOMEBREW_SERVICES_GIT_REMOTE="${HOMEBREW_SERVICES_GIT_REMOTE:-"${HOMEBREW_SERVICES_DEFAULT_GIT_REMOTE}"}"
+HOMEBREW_COMMAND_NOT_FOUND_GIT_REMOTE="${HOMEBREW_COMMAND_NOT_FOUND_GIT_REMOTE:-"${HOMEBREW_COMMAND_NOT_FOUND_DEFAULT_GIT_REMOTE}"}"
+
 # The URLs with and without the '.git' suffix are the same Git remote. Do not prompt.
 if [[ "${HOMEBREW_BREW_GIT_REMOTE}" == "${HOMEBREW_BREW_DEFAULT_GIT_REMOTE}.git" ]]
 then
@@ -178,7 +193,35 @@ if [[ "${HOMEBREW_CORE_GIT_REMOTE}" == "${HOMEBREW_CORE_DEFAULT_GIT_REMOTE}.git"
 then
   HOMEBREW_CORE_GIT_REMOTE="${HOMEBREW_CORE_DEFAULT_GIT_REMOTE}"
 fi
-export HOMEBREW_{BREW,CORE}_GIT_REMOTE
+if [[ "${HOMEBREW_CASK_GIT_REMOTE}" == "${HOMEBREW_CASK_DEFAULT_GIT_REMOTE}.git" ]]
+then
+  HOMEBREW_CASK_GIT_REMOTE="${HOMEBREW_CASK_DEFAULT_GIT_REMOTE}"
+fi
+if [[ "${HOMEBREW_CASK_FONTS_GIT_REMOTE}" == "${HOMEBREW_CASK_FONTS_DEFAULT_GIT_REMOTE}.git" ]]
+then
+  HOMEBREW_CASK_FONTS_GIT_REMOTE="${HOMEBREW_CASK_FONTS_DEFAULT_GIT_REMOTE}"
+fi
+if [[ "${HOMEBREW_CASK_DRIVERS_GIT_REMOTE}" == "${HOMEBREW_CASK_DRIVERS_DEFAULT_GIT_REMOTE}.git" ]]
+then
+  HOMEBREW_CASK_DRIVERS_GIT_REMOTE="${HOMEBREW_CASK_DRIVERS_DEFAULT_GIT_REMOTE}"
+fi
+if [[ "${HOMEBREW_CASK_VERSIONS_GIT_REMOTE}" == "${HOMEBREW_CASK_VERSIONS_DEFAULT_GIT_REMOTE}.git" ]]
+then
+  HOMEBREW_CASK_VERSIONS_GIT_REMOTE="${HOMEBREW_CASK_VERSIONS_DEFAULT_GIT_REMOTE}"
+fi
+if [[ "${HOMEBREW_BUNDLE_GIT_REMOTE}" == "${HOMEBREW_BUNDLE_DEFAULT_GIT_REMOTE}.git" ]]
+then
+  HOMEBREW_BUNDLE_GIT_REMOTE="${HOMEBREW_BUNDLE_DEFAULT_GIT_REMOTE}"
+fi
+if [[ "${HOMEBREW_SERVICES_GIT_REMOTE}" == "${HOMEBREW_SERVICES_DEFAULT_GIT_REMOTE}.git" ]]
+then
+  HOMEBREW_SERVICES_GIT_REMOTE="${HOMEBREW_SERVICES_DEFAULT_GIT_REMOTE}"
+fi
+if [[ "${HOMEBREW_COMMAND_NOT_FOUND_GIT_REMOTE}" == "${HOMEBREW_COMMAND_NOT_FOUND_DEFAULT_GIT_REMOTE}.git" ]]
+then
+  HOMEBREW_COMMAND_NOT_FOUND_GIT_REMOTE="${HOMEBREW_COMMAND_NOT_FOUND_DEFAULT_GIT_REMOTE}"
+fi
+export HOMEBREW_{BREW,CORE,CASK,CASK_FONTS,CASK_DRIVERS,CASK_VERSIONS,BUNDLE,SERVICES,COMMAND_NOT_FOUND}_GIT_REMOTE
 
 # TODO: bump version when new macOS is released or announced
 MACOS_NEWEST_UNSUPPORTED="14.0"
@@ -481,6 +524,13 @@ EOABORT
   )"
 fi
 HOMEBREW_CORE="${HOMEBREW_REPOSITORY}/Library/Taps/homebrew/homebrew-core"
+HOMEBREW_CASK="${HOMEBREW_REPOSITORY}/Library/Taps/homebrew/homebrew-cask"
+HOMEBREW_CASK_FONTS="${HOMEBREW_REPOSITORY}/Library/Taps/homebrew/homebrew-cask-fonts"
+HOMEBREW_CASK_DRIVERS="${HOMEBREW_REPOSITORY}/Library/Taps/homebrew/homebrew-cask-drivers"
+HOMEBREW_CASK_VERSIONS="${HOMEBREW_REPOSITORY}/Library/Taps/homebrew/homebrew-cask-versions"
+HOMEBREW_BUNDLE="${HOMEBREW_REPOSITORY}/Library/Taps/homebrew/homebrew-bundle"
+HOMEBREW_SERVICES="${HOMEBREW_REPOSITORY}/Library/Taps/homebrew/homebrew-services"
+HOMEBREW_COMMAND_NOT_FOUND="${HOMEBREW_REPOSITORY}/Library/Taps/homebrew/homebrew-command-not-found"
 
 check_run_command_as_root
 
@@ -703,6 +753,62 @@ then
   echo "${tty_underline}${HOMEBREW_CORE_GIT_REMOTE}${tty_reset} will be used as the Homebrew/homebrew-core Git remote."
   non_default_repos="${non_default_repos:-}${non_default_repos:+ and }Homebrew/homebrew-core"
   additional_shellenv_commands+=("export HOMEBREW_CORE_GIT_REMOTE=\"${HOMEBREW_CORE_GIT_REMOTE}\"")
+fi
+
+if [[ "${HOMEBREW_CASK_DEFAULT_GIT_REMOTE}" != "${HOMEBREW_CASK_GIT_REMOTE}" ]]
+then
+  ohai "HOMEBREW_CASK_GIT_REMOTE is set to a non-default URL:"
+  echo "${tty_underline}${HOMEBREW_CASK_GIT_REMOTE}${tty_reset} will be used as the Homebrew/homebrew-cask Git remote."
+  non_default_repos="${non_default_repos:-}${non_default_repos:+ and }Homebrew/homebrew-cask"
+  additional_shellenv_commands+=("export HOMEBREW_CASK_GIT_REMOTE=\"${HOMEBREW_CASK_GIT_REMOTE}\"")
+fi
+
+if [[ "${HOMEBREW_CASK_FONTS_DEFAULT_GIT_REMOTE}" != "${HOMEBREW_CASK_FONTS_GIT_REMOTE}" ]]
+then
+  ohai "HOMEBREW_CASK_FONTS_GIT_REMOTE is set to a non-default URL:"
+  echo "${tty_underline}${HOMEBREW_CASK_FONTS_GIT_REMOTE}${tty_reset} will be used as the Homebrew/homebrew-cask-fonts Git remote."
+  non_default_repos="${non_default_repos:-}${non_default_repos:+ and }Homebrew/homebrew-cask-fonts"
+  additional_shellenv_commands+=("export HOMEBREW_CASK_FONTS_GIT_REMOTE=\"${HOMEBREW_CASK_FONTS_GIT_REMOTE}\"")
+fi
+
+if [[ "${HOMEBREW_CASK_DRIVERS_DEFAULT_GIT_REMOTE}" != "${HOMEBREW_CASK_DRIVERS_GIT_REMOTE}" ]]
+then
+  ohai "HOMEBREW_CASK_DRIVERS_GIT_REMOTE is set to a non-default URL:"
+  echo "${tty_underline}${HOMEBREW_CASK_DRIVERS_GIT_REMOTE}${tty_reset} will be used as the Homebrew/homebrew-cask-drivers Git remote."
+  non_default_repos="${non_default_repos:-}${non_default_repos:+ and }Homebrew/homebrew-cask-drivers"
+  additional_shellenv_commands+=("export HOMEBREW_CASK_DRIVERS_GIT_REMOTE=\"${HOMEBREW_CASK_DRIVERS_GIT_REMOTE}\"")
+fi
+
+if [[ "${HOMEBREW_CASK_VERSIONS_DEFAULT_GIT_REMOTE}" != "${HOMEBREW_CASK_VERSIONS_GIT_REMOTE}" ]]
+then
+  ohai "HOMEBREW_CASK_VERSIONS_GIT_REMOTE is set to a non-default URL:"
+  echo "${tty_underline}${HOMEBREW_CASK_VERSIONS_GIT_REMOTE}${tty_reset} will be used as the Homebrew/homebrew-cask-versions Git remote."
+  non_default_repos="${non_default_repos:-}${non_default_repos:+ and }Homebrew/homebrew-cask-versions"
+  additional_shellenv_commands+=("export HOMEBREW_CASK_VERSIONS_GIT_REMOTE=\"${HOMEBREW_CASK_VERSIONS_GIT_REMOTE}\"")
+fi
+
+if [[ "${HOMEBREW_BUNDLE_DEFAULT_GIT_REMOTE}" != "${HOMEBREW_BUNDLE_GIT_REMOTE}" ]]
+then
+  ohai "HOMEBREW_BUNDLE_GIT_REMOTE is set to a non-default URL:"
+  echo "${tty_underline}${HOMEBREW_BUNDLE_GIT_REMOTE}${tty_reset} will be used as the Homebrew/homebrew-bundle Git remote."
+  non_default_repos="${non_default_repos:-}${non_default_repos:+ and }Homebrew/homebrew-bundle"
+  additional_shellenv_commands+=("export HOMEBREW_BUNDLE_GIT_REMOTE=\"${HOMEBREW_BUNDLE_GIT_REMOTE}\"")
+fi
+
+if [[ "${HOMEBREW_SERVICES_DEFAULT_GIT_REMOTE}" != "${HOMEBREW_SERVICES_GIT_REMOTE}" ]]
+then
+  ohai "HOMEBREW_SERVICES_GIT_REMOTE is set to a non-default URL:"
+  echo "${tty_underline}${HOMEBREW_SERVICES_GIT_REMOTE}${tty_reset} will be used as the Homebrew/homebrew-services Git remote."
+  non_default_repos="${non_default_repos:-}${non_default_repos:+ and }Homebrew/homebrew-services"
+  additional_shellenv_commands+=("export HOMEBREW_SERVICES_GIT_REMOTE=\"${HOMEBREW_SERVICES_GIT_REMOTE}\"")
+fi
+
+if [[ "${HOMEBREW_COMMAND_NOT_FOUND_DEFAULT_GIT_REMOTE}" != "${HOMEBREW_COMMAND_NOT_FOUND_GIT_REMOTE}" ]]
+then
+  ohai "HOMEBREW_COMMAND_NOT_FOUND_GIT_REMOTE is set to a non-default URL:"
+  echo "${tty_underline}${HOMEBREW_COMMAND_NOT_FOUND_GIT_REMOTE}${tty_reset} will be used as the Homebrew/homebrew-command-not-found Git remote."
+  non_default_repos="${non_default_repos:-}${non_default_repos:+ and }Homebrew/homebrew-command-not-found"
+  additional_shellenv_commands+=("export HOMEBREW_COMMAND_NOT_FOUND_GIT_REMOTE=\"${HOMEBREW_COMMAND_NOT_FOUND_GIT_REMOTE}\"")
 fi
 
 if [[ -n "${HOMEBREW_NO_INSTALL_FROM_API-}" ]]
@@ -949,7 +1055,161 @@ ohai "Downloading and installing Homebrew..."
     ) || exit 1
   fi
 
-  execute "${HOMEBREW_PREFIX}/bin/brew" "update" "--force" "--quiet"
+  if [[ -n "${HOMEBREW_NO_INSTALL_FROM_API-}" && ! -d "${HOMEBREW_CASK}" ]]
+  then
+    # Always use single-quoted strings with `exp` expressions
+    # shellcheck disable=SC2016
+    ohai 'Tapping homebrew/cask because `$HOMEBREW_NO_INSTALL_FROM_API` is set.'
+    (
+      execute "${MKDIR[@]}" "${HOMEBREW_CASK}"
+      cd "${HOMEBREW_CASK}" >/dev/null || return
+
+      execute "${USABLE_GIT}" "-c" "init.defaultBranch=master" "init" "--quiet"
+      execute "${USABLE_GIT}" "config" "remote.origin.url" "${HOMEBREW_CASK_GIT_REMOTE}"
+      execute "${USABLE_GIT}" "config" "remote.origin.fetch" "+refs/heads/*:refs/remotes/origin/*"
+      execute "${USABLE_GIT}" "config" "--bool" "core.autocrlf" "false"
+      execute "${USABLE_GIT}" "config" "--bool" "core.symlinks" "true"
+      execute "${USABLE_GIT}" "fetch" "--force" "origin" "refs/heads/master:refs/remotes/origin/master"
+      execute "${USABLE_GIT}" "remote" "set-head" "origin" "--auto" >/dev/null
+      execute "${USABLE_GIT}" "reset" "--hard" "origin/master"
+
+      cd "${HOMEBREW_REPOSITORY}" >/dev/null || return
+    ) || exit 1
+  fi
+
+  if [[ -n "${HOMEBREW_NO_INSTALL_FROM_API-}" && ! -d "${HOMEBREW_CASK_FONTS}" ]]
+  then
+    # Always use single-quoted strings with `exp` expressions
+    # shellcheck disable=SC2016
+    ohai 'Tapping homebrew/cask-fonts because `$HOMEBREW_NO_INSTALL_FROM_API` is set.'
+    (
+      execute "${MKDIR[@]}" "${HOMEBREW_CASK_FONTS}"
+      cd "${HOMEBREW_CASK_FONTS}" >/dev/null || return
+
+      execute "${USABLE_GIT}" "-c" "init.defaultBranch=master" "init" "--quiet"
+      execute "${USABLE_GIT}" "config" "remote.origin.url" "${HOMEBREW_CASK_FONTS_GIT_REMOTE}"
+      execute "${USABLE_GIT}" "config" "remote.origin.fetch" "+refs/heads/*:refs/remotes/origin/*"
+      execute "${USABLE_GIT}" "config" "--bool" "core.autocrlf" "false"
+      execute "${USABLE_GIT}" "config" "--bool" "core.symlinks" "true"
+      execute "${USABLE_GIT}" "fetch" "--force" "origin" "refs/heads/master:refs/remotes/origin/master"
+      execute "${USABLE_GIT}" "remote" "set-head" "origin" "--auto" >/dev/null
+      execute "${USABLE_GIT}" "reset" "--hard" "origin/master"
+
+      cd "${HOMEBREW_REPOSITORY}" >/dev/null || return
+    ) || exit 1
+  fi
+
+  if [[ -n "${HOMEBREW_NO_INSTALL_FROM_API-}" && ! -d "${HOMEBREW_CASK_DRIVERS}" ]]
+  then
+    # Always use single-quoted strings with `exp` expressions
+    # shellcheck disable=SC2016
+    ohai 'Tapping homebrew/cask-drivers because `$HOMEBREW_NO_INSTALL_FROM_API` is set.'
+    (
+      execute "${MKDIR[@]}" "${HOMEBREW_CASK_DRIVERS}"
+      cd "${HOMEBREW_CASK_DRIVERS}" >/dev/null || return
+
+      execute "${USABLE_GIT}" "-c" "init.defaultBranch=master" "init" "--quiet"
+      execute "${USABLE_GIT}" "config" "remote.origin.url" "${HOMEBREW_CASK_DRIVERS_GIT_REMOTE}"
+      execute "${USABLE_GIT}" "config" "remote.origin.fetch" "+refs/heads/*:refs/remotes/origin/*"
+      execute "${USABLE_GIT}" "config" "--bool" "core.autocrlf" "false"
+      execute "${USABLE_GIT}" "config" "--bool" "core.symlinks" "true"
+      execute "${USABLE_GIT}" "fetch" "--force" "origin" "refs/heads/master:refs/remotes/origin/master"
+      execute "${USABLE_GIT}" "remote" "set-head" "origin" "--auto" >/dev/null
+      execute "${USABLE_GIT}" "reset" "--hard" "origin/master"
+
+      cd "${HOMEBREW_REPOSITORY}" >/dev/null || return
+    ) || exit 1
+  fi
+
+  if [[ -n "${HOMEBREW_NO_INSTALL_FROM_API-}" && ! -d "${HOMEBREW_CASK_VERSIONS}" ]]
+  then
+    # Always use single-quoted strings with `exp` expressions
+    # shellcheck disable=SC2016
+    ohai 'Tapping homebrew/cask-versions because `$HOMEBREW_NO_INSTALL_FROM_API` is set.'
+    (
+      execute "${MKDIR[@]}" "${HOMEBREW_CASK_VERSIONS}"
+      cd "${HOMEBREW_CASK_VERSIONS}" >/dev/null || return
+
+      execute "${USABLE_GIT}" "-c" "init.defaultBranch=master" "init" "--quiet"
+      execute "${USABLE_GIT}" "config" "remote.origin.url" "${HOMEBREW_CASK_VERSIONS_GIT_REMOTE}"
+      execute "${USABLE_GIT}" "config" "remote.origin.fetch" "+refs/heads/*:refs/remotes/origin/*"
+      execute "${USABLE_GIT}" "config" "--bool" "core.autocrlf" "false"
+      execute "${USABLE_GIT}" "config" "--bool" "core.symlinks" "true"
+      execute "${USABLE_GIT}" "fetch" "--force" "origin" "refs/heads/master:refs/remotes/origin/master"
+      execute "${USABLE_GIT}" "remote" "set-head" "origin" "--auto" >/dev/null
+      execute "${USABLE_GIT}" "reset" "--hard" "origin/master"
+
+      cd "${HOMEBREW_REPOSITORY}" >/dev/null || return
+    ) || exit 1
+  fi
+
+  if [[ -n "${HOMEBREW_NO_INSTALL_FROM_API-}" && ! -d "${HOMEBREW_BUNDLE}" ]]
+  then
+    # Always use single-quoted strings with `exp` expressions
+    # shellcheck disable=SC2016
+    ohai 'Tapping homebrew/bundle because `$HOMEBREW_NO_INSTALL_FROM_API` is set.'
+    (
+      execute "${MKDIR[@]}" "${HOMEBREW_BUNDLE}"
+      cd "${HOMEBREW_BUNDLE}" >/dev/null || return
+
+      execute "${USABLE_GIT}" "-c" "init.defaultBranch=master" "init" "--quiet"
+      execute "${USABLE_GIT}" "config" "remote.origin.url" "${HOMEBREW_BUNDLE_GIT_REMOTE}"
+      execute "${USABLE_GIT}" "config" "remote.origin.fetch" "+refs/heads/*:refs/remotes/origin/*"
+      execute "${USABLE_GIT}" "config" "--bool" "core.autocrlf" "false"
+      execute "${USABLE_GIT}" "config" "--bool" "core.symlinks" "true"
+      execute "${USABLE_GIT}" "fetch" "--force" "origin" "refs/heads/master:refs/remotes/origin/master"
+      execute "${USABLE_GIT}" "remote" "set-head" "origin" "--auto" >/dev/null
+      execute "${USABLE_GIT}" "reset" "--hard" "origin/master"
+
+      cd "${HOMEBREW_REPOSITORY}" >/dev/null || return
+    ) || exit 1
+  fi
+
+  if [[ -n "${HOMEBREW_NO_INSTALL_FROM_API-}" && ! -d "${HOMEBREW_SERVICES}" ]]
+  then
+    # Always use single-quoted strings with `exp` expressions
+    # shellcheck disable=SC2016
+    ohai 'Tapping homebrew/services because `$HOMEBREW_NO_INSTALL_FROM_API` is set.'
+    (
+      execute "${MKDIR[@]}" "${HOMEBREW_SERVICES}"
+      cd "${HOMEBREW_SERVICES}" >/dev/null || return
+
+      execute "${USABLE_GIT}" "-c" "init.defaultBranch=master" "init" "--quiet"
+      execute "${USABLE_GIT}" "config" "remote.origin.url" "${HOMEBREW_SERVICES_GIT_REMOTE}"
+      execute "${USABLE_GIT}" "config" "remote.origin.fetch" "+refs/heads/*:refs/remotes/origin/*"
+      execute "${USABLE_GIT}" "config" "--bool" "core.autocrlf" "false"
+      execute "${USABLE_GIT}" "config" "--bool" "core.symlinks" "true"
+      execute "${USABLE_GIT}" "fetch" "--force" "origin" "refs/heads/master:refs/remotes/origin/master"
+      execute "${USABLE_GIT}" "remote" "set-head" "origin" "--auto" >/dev/null
+      execute "${USABLE_GIT}" "reset" "--hard" "origin/master"
+
+      cd "${HOMEBREW_REPOSITORY}" >/dev/null || return
+    ) || exit 1
+  fi
+
+  if [[ -n "${HOMEBREW_NO_INSTALL_FROM_API-}" && ! -d "${HOMEBREW_COMMAND_NOT_FOUND}" ]]
+  then
+    # Always use single-quoted strings with `exp` expressions
+    # shellcheck disable=SC2016
+    ohai 'Tapping homebrew/command-not-found because `$HOMEBREW_NO_INSTALL_FROM_API` is set.'
+    (
+      execute "${MKDIR[@]}" "${HOMEBREW_COMMAND_NOT_FOUND}"
+      cd "${HOMEBREW_COMMAND_NOT_FOUND}" >/dev/null || return
+
+      execute "${USABLE_GIT}" "-c" "init.defaultBranch=master" "init" "--quiet"
+      execute "${USABLE_GIT}" "config" "remote.origin.url" "${HOMEBREW_COMMAND_NOT_FOUND_GIT_REMOTE}"
+      execute "${USABLE_GIT}" "config" "remote.origin.fetch" "+refs/heads/*:refs/remotes/origin/*"
+      execute "${USABLE_GIT}" "config" "--bool" "core.autocrlf" "false"
+      execute "${USABLE_GIT}" "config" "--bool" "core.symlinks" "true"
+      execute "${USABLE_GIT}" "fetch" "--force" "origin" "refs/heads/master:refs/remotes/origin/master"
+      execute "${USABLE_GIT}" "remote" "set-head" "origin" "--auto" >/dev/null
+      execute "${USABLE_GIT}" "reset" "--hard" "origin/master"
+
+      cd "${HOMEBREW_REPOSITORY}" >/dev/null || return
+    ) || exit 1
+  fi
+
+  execute "${HOMEBREW_PREFIX}/bin/brew" "update" "--force" "--verbose"
 ) || exit 1
 
 if [[ ":${PATH}:" != *":${HOMEBREW_PREFIX}/bin:"* ]]
