@@ -24,6 +24,7 @@ export HOMEBREW_CASK_VERSIONS_GIT_REMOTE="..."     # put your Git mirror of Home
 export HOMEBREW_BUNDLE_GIT_REMOTE="..."            # put your Git mirror of Homebrew/homebrew-bundle here
 export HOMEBREW_SERVICES_GIT_REMOTE="..."          # put your Git mirror of Homebrew/homebrew-services here
 export HOMEBREW_COMMAND_NOT_FOUND_GIT_REMOTE="..." # put your Git mirror of Homebrew/homebrew-command-not-found here here
+export HOMEBREW_AUTOUPDATE_GIT_REMOTE="..."        # put your Git mirror of Homebrew/homebrew-autoupdate here here
 /bin/bash -c "$(curl -fsSL https://gitee.com/bugwz/homebrew-install/raw/mirror/install.sh)"
 ```
 
